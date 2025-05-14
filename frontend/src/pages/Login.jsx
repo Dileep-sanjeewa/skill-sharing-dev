@@ -51,88 +51,80 @@ export default function Login() {
   };
 
   return (
-    <div className="bg-indigo-50 min-h-screen flex items-center justify-center">
-      <section className="h-screen flex w-full">
-        {/* Left: Transparent Background Image */}
-        <div className="w-1/2 hidden lg:flex items-center justify-center">
-          <img
-            src={SignInBG}
-            alt="Skill Sharing Illustration"
-            className="object-contain max-w-full h-auto"
-          />
-        </div>
-
-        {/* Right: Login Form */}
-        <div className="w-full lg:w-1/2 flex items-center justify-center px-4">
-          <div
-            className="w-full max-w-md mb-2 mt-4 rounded-lg p-6"
-            style={{
-              backgroundColor: "rgba(0, 0, 0, 0.3)",
-              border: "2px solid #E09145",
-            }}
-          >
+    // CHANGED: Updated the main container to use flex-row-reverse to swap positions
+    <div className="min-h-screen flex items-stretch bg-blue-50">
+      {/* CHANGED: Left side with login form (was previously on right) */}
+      <div className="w-full lg:w-1/2 flex items-center justify-center px-6 py-12">
+        {/* CHANGED: Updated form styling with blue theme */}
+        <div className="w-full max-w-md rounded-xl shadow-lg overflow-hidden">
+          <div className="bg-blue-600 py-4 px-6">
+            <h2 className="text-2xl font-bold text-white text-center">
+              Welcome Back
+            </h2>
+            <p className="text-blue-100 text-center">
+              Sign in to continue learning and sharing skills
+            </p>
+          </div>
+          
+          <div className="bg-white p-6">
             <form onSubmit={handleSubmit(onSubmit)}>
+              {/* CHANGED: Updated input styling */}
               <TEInput
                 type="email"
                 label="Email address"
                 size="lg"
-                className="mb-1 border border-purple-500 rounded-lg text-white"
-                style={{
-                  "--tw-ring-color": "#9F5F91",
-                  "--tw-ring-offset-width": "2px",
-                }}
+                className="mb-1"
                 {...register("email")}
                 isInvalid={errors.email}
               ></TEInput>
-              <p className="mb-6 text-sm text-red-500">
+              <p className="mb-4 text-xs text-red-500">
                 {errors.email?.message}
               </p>
 
               <TEInput
                 type="password"
                 label="Password"
-                className="mb-1 border border-purple-500 rounded-lg text-black"
-                style={{
-                  "--tw-ring-color": "#9F5F91",
-                  "--tw-ring-offset-width": "2px",
-                }}
+                className="mb-1"
                 size="lg"
                 {...register("password")}
                 isInvalid={errors.password}
               ></TEInput>
-              <p className="mb-6 text-sm text-red-500">
+              <p className="mb-4 text-xs text-red-500">
                 {errors.password?.message}
               </p>
 
+              {/* CHANGED: Updated primary button styling */}
               <TERipple rippleColor="light" className="w-full">
                 <button
                   type="submit"
-                  className="mb-3 inline-block w-full rounded bg-yellow-500 px-7 pb-2.5 pt-3 text-sm font-medium uppercase leading-normal text-white shadow-md transition duration-150 ease-in-out hover:bg-yellow-600 hover:shadow-lg focus:bg-yellow-700 focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 active:bg-yellow-800 active:shadow-lg"
+                  className="mb-3 inline-block w-full rounded bg-blue-600 px-7 py-3 text-sm font-medium uppercase leading-normal text-white shadow-md transition duration-150 ease-in-out hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                 >
                   {isSubmitting ? "Loading..." : "Sign In"}
                 </button>
               </TERipple>
 
+              {/* CHANGED: Updated sign up button styling */}
               <TERipple rippleColor="light" className="w-full">
                 <button
                   onClick={() => navigate("/register")}
                   type="button"
-                  className="mb-3 inline-block w-full rounded bg-yellow-500 px-7 pb-2.5 pt-3 text-sm font-medium uppercase leading-normal text-white shadow-md transition duration-150 ease-in-out hover:bg-yellow-600 hover:shadow-lg focus:bg-yellow-700 focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 active:bg-yellow-800 active:shadow-lg"
+                  className="mb-3 inline-block w-full rounded border-2 border-blue-600 px-7 py-3 text-sm font-medium uppercase leading-normal text-blue-600 transition duration-150 ease-in-out hover:bg-blue-50 hover:shadow-lg focus:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 >
-                  Sign Up
+                  Create Account
                 </button>
               </TERipple>
 
-              <div className="my-4 flex items-center before:flex-1 before:border-t before:border-neutral-300 after:flex-1 after:border-t after:border-neutral-300">
-                <p className="mx-4 mb-0 text-center font-semibold text-white">
+              <div className="my-4 flex items-center before:flex-1 before:border-t before:border-gray-300 after:flex-1 after:border-t after:border-gray-300">
+                <p className="mx-4 mb-0 text-center font-semibold text-gray-500">
                   OR
                 </p>
               </div>
 
+              {/* CHANGED: Updated Google button to red */}
               <TERipple rippleColor="light" className="w-full">
                 <div
                   onClick={handleGoogleLogin}
-                  className="mb-3 flex w-full cursor-pointer items-center justify-center rounded bg-[#13A455] px-7 pb-2.5 pt-3 text-center text-sm font-medium uppercase leading-normal text-white shadow-md transition duration-150 ease-in-out hover:bg-[#0e8a3f]"
+                  className="mb-3 flex w-full cursor-pointer items-center justify-center rounded bg-red-600 px-7 py-3 text-center text-sm font-medium uppercase leading-normal text-white shadow-md transition duration-150 ease-in-out hover:bg-red-700 hover:shadow-lg"
                 >
                   <svg
                     className="mr-2 h-4 w-4"
@@ -151,12 +143,18 @@ export default function Login() {
               </TERipple>
             </form>
           </div>
-          
         </div>
-        
-      </section>
-      
-      
+      </div>
+
+      {/* CHANGED: Right side with background image (was previously on left and hidden) */}
+      <div className="hidden lg:block lg:w-1/2 bg-cover bg-center" style={{ backgroundImage: `url(${SignInBG})` }}>
+        <div className="h-full w-full bg-blue-900 bg-opacity-30 flex items-center justify-center">
+          <div className="text-center p-8 max-w-lg">
+            <h1 className="text-4xl font-bold text-white mb-4">Learn & Share Skills</h1>
+            <p className="text-xl text-white">Connect with experts, enhance your abilities, and share your knowledge with our community.</p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

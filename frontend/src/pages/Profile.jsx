@@ -5,6 +5,7 @@ import PostsList from "../components/PostsList";
 import CreateBG from "../images/CreateBG.png";
 import SideBar2 from "../components/SideBar2";
 import Layout from "../components/Layout";
+import CoverBG from "../images/CoverBG.png";
 
 const Profile = () => {
   const [user, setUser] = useState(null);
@@ -96,13 +97,14 @@ const Profile = () => {
           <SideBar2 logUser={user}/>
         </div>
         <div className="w-[800px] bg-gray-800 rounded-lg">
-          <section>
-            <img
-              className="w-full h-64 object-cover"
-              src=""
-              alt=""
-            />
-          </section>
+        <section>
+          <img
+            className="w-full h-64 object-cover"
+            src={CoverBG}
+            alt="Cover"
+           />
+        </section>
+
 
           <section className="pl-6">
             <div className="flex justify-between items-start mt-5 h-20 ">
@@ -162,7 +164,21 @@ const Profile = () => {
                   >
                     Post
                   </NavLink>
-                  
+                  <NavLink
+                    to="/CreateProgress"
+                    className="bg-yellow-500 hover:bg-yellow-600 text-white px-15 py-2 rounded-md text-center"
+                    style={{ width: "150px" }}
+                  >
+                  Your progress
+                  </NavLink>
+
+                  <NavLink
+                    to="/CreateSkillExchange"
+                    className="bg-yellow-500 hover:bg-yellow-600 text-white px-15 py-2 rounded-md text-center"
+                    style={{ width: "150px" }}
+                  >
+                  SkillExchange
+                  </NavLink>
                   
                   
                 </div>

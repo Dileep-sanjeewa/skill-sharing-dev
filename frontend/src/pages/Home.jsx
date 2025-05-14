@@ -6,7 +6,11 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { useActiveTab } from "../context/ActiveTabContext";
 import { SharedPostlist } from "../components/SharedPostlist";
-import { FaDumbbell } from 'react-icons/fa';
+import { FaChartLine } from 'react-icons/fa';
+import { FaExchangeAlt } from 'react-icons/fa';
+import Progress from "./Progress";
+import SkillExchange from "./SkillExchange";
+
 
 const Home = () => {
   const { activeTab, setActiveTab } = useActiveTab();
@@ -81,52 +85,85 @@ const Home = () => {
   return (
     <Layout>
       <>
-      <div className="mb-1">
-        <TETabs fill className="">
-          <TETabsItem
-            onClick={() => setActiveTab("tab1")}
-            active={activeTab === "tab1" || activeTab === "" ? true : false}
-            icon={<FaDumbbell />}
-            className="bg-gray-800"
-            style={{ 
-              fontSize: "0.8rem",
-              backgroundColor: activeTab === "tab1" || activeTab === "" ? "#E09145" : "#292C35",
-              color: "#FFFFFF",
-              transition: "background-color 0.2s ease",
-            }}
-          >
-            <FaDumbbell /> Posts
-          </TETabsItem>
-        </TETabs>
-      </div>
+      {/* Tab navigation */}
+      <div className="mb-4">
+          <TETabs fill>
+            <TETabsItem
+              onClick={() => setActiveTab("tab1")}
+              active={activeTab === "tab1" || activeTab === ""}
+              className={`text-sm font-medium px-4 py-2 rounded-t-md transition-all duration-300 
+                ${activeTab === "tab1" || activeTab === ""
+                  ? "bg-gradient-to-r from-blue-500 to-blue-700 text-white shadow-md"
+                  : "bg-gray-200 text-gray-700 hover:bg-blue-100"}`}
+            >
+              Posts
+            </TETabsItem>
+            <TETabsItem
+              onClick={() => setActiveTab("tab5")}
+              active={activeTab === "tab5"}
+              icon={<FaChartLine />}
+              className={`text-sm font-medium px-4 py-2 rounded-t-md transition-all duration-300 
+                ${activeTab === "tab5"
+                  ? "bg-gradient-to-r from-blue-500 to-blue-700 text-white shadow-md"
+                  : "bg-gray-200 text-gray-700 hover:bg-blue-100"}`}
+            >
+              <FaChartLine /> Progress
+            </TETabsItem>
 
-      <div>
-        {posts?.map((post, index) => {
-          return (
-            <PostsList
-              post={post}
-              user={user}
-              key={index}
-              onUpdatePost={updatePost}
-              onDeletePost={deletePost}
-              reFetchPost={reFetchPost}
-              setReFetchPost={setReFetchPost}
-              setReFetchSharedPost={setReFetchSharedPost}
-              reFetchSharedPost={reFetchSharedPost}
-            />
-          );
-        })}
-        {sharedPosts?.map((sharePost, index) => {
-          return (
-            <SharedPostlist
-              post={sharePost}
-              user={user}
-              reFetchSharedPost={reFetchSharedPost}
-              setReFetchSharedPost={setReFetchSharedPost}
-            />
-          );
-        })}
-      </div>
+            <TETabsItem
+              onClick={() => setActiveTab("tab6")}
+              active={activeTab === "tab6"}
+              icon={<FaExchangeAlt />}
+              className={`text-sm font-medium px-4 py-2 rounded-t-md transition-all duration-300 
+                ${activeTab === "tab6"
+                  ? "bg-gradient-to-r from-blue-500 to-blue-700 text-white shadow-md"
+                  : "bg-gray-200 text-gray-700 hover:bg-blue-100"}`}
+            >
+              <FaExchangeAlt /> Skill Exchange
+            </TETabsItem>
+          </TETabs>
+        </div>
+
+      {activeTab === "tab1" && (
+        <div>
+          {posts?.map((post, index) => {
+            return (
+              <PostsList
+                post={post}
+                user={user}
+                key={index}
+                onUpdatePost={updatePost}
+                onDeletePost={deletePost}
+                reFetchPost={reFetchPost}
+                setReFetchPost={setReFetchPost}
+                setReFetchSharedPost={setReFetchSharedPost}
+                reFetchSharedPost={reFetchSharedPost}
+              />
+            );
+          })}
+          {sharedPosts?.map((sharePost, index) => {
+            return (
+              <SharedPostlist
+                post={sharePost}
+                user={user}
+                reFetchSharedPost={reFetchSharedPost}
+                setReFetchSharedPost={setReFetchSharedPost}
+              />
+            );
+          })}
+        </div>
+      )}
+      
+      {activeTab === "tab5" && (
+        <div>
+          <Progress user={user} />
+        </div>
+      )}
+      {activeTab === "tab6" && (
+          <div>
+            <SkillExchange user={user} />
+          </div>
+        )}
       </>
     </Layout>
   );

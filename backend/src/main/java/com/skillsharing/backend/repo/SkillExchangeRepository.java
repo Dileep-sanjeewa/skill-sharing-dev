@@ -1,4 +1,7 @@
 package com.skillsharing.backend.repo;
 
-public interface SkillExchangeRepository {
+import com.skillsharing.backend.model.SkillExchange;
+import org.springframework.data.mongodb.repository.MongoRepository;
+
+public interface SkillExchangeRepository extends MongoRepository<SkillExchange, String> {
 }
