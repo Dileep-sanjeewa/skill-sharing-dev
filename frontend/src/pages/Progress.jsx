@@ -4,6 +4,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { AiFillDelete, AiFillEdit } from "react-icons/ai";
 import CreateBG from "../images/CreateBG.png";
+import Layout from "../components/Layout";
 
 const Progress = ({ user }) => {
   const [progressList, setProgressList] = useState([]);
@@ -41,6 +42,7 @@ const Progress = ({ user }) => {
   };
 
   return (
+    <Layout>
     <div
       className="p-4 min-h-screen bg-cover bg-center"
       style={{ backgroundImage: `url(${CreateBG})` }}
@@ -108,6 +110,7 @@ const Progress = ({ user }) => {
         ))}
       </div>
     </div>
+    </Layout>
   );
 };
 
