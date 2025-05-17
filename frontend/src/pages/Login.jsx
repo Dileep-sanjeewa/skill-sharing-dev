@@ -51,112 +51,157 @@ export default function Login() {
   };
 
   return (
-    <div className="bg-indigo-50 min-h-screen flex items-center justify-center">
-      <section className="h-screen flex w-full">
-        {/* Left: Transparent Background Image */}
-        <div className="w-1/2 hidden lg:flex items-center justify-center">
-          <img
-            src={SignInBG}
-            alt="Skill Sharing Illustration"
-            className="object-contain max-w-full h-auto"
-          />
+    // CHANGED: Updated the main container to use flex-row-reverse to swap positions
+   <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#5dade2] to-[#80c4ef] p-4">
+  <div className="w-full max-w-5xl bg-white rounded-3xl shadow-xl overflow-hidden flex">
+    {/* Left Column - Visual Section */}
+    <div className="hidden lg:block w-6/12 bg-gradient-to-b from-[#5dade2] to-[#6fb5e8] p-6">
+      <div className="h-full flex flex-col items-center justify-center text-center">
+        <img 
+          src={SignInBG} 
+          alt="Learning illustration" 
+          className="w-full max-w-[280px] object-cover rounded-xl shadow-lg mb-5 transform hover:scale-105 transition-transform duration-300"
+        />
+        <h3 className="text-xl font-bold text-white mb-3">Join Our Community</h3>
+        <p className="text-white/90 text-sm px-4">
+          Connect with experts and enhance your skills through collaborative learning
+        </p>
+      </div>
+    </div>
+
+    {/* Right Column - Form Section */}
+    <div className="w-full lg:w-6/12 p-8">
+      <div className="space-y-5">
+        {/* Header */}
+        <div className="text-center mb-6">
+          <div className="inline-flex items-center justify-center w-14 h-14 bg-[#5dade2]/10 rounded-xl mb-3 animate-pulse">
+            <svg className="w-7 h-7 text-[#5dade2]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+            </svg>
+          </div>
+          <h2 className="text-2xl font-bold text-gray-800 mb-1">Welcome Back</h2>
+          <p className="text-gray-500 text-sm">Sign in to continue learning</p>
         </div>
 
-        {/* Right: Login Form */}
-        <div className="w-full lg:w-1/2 flex items-center justify-center px-4">
-          <div
-            className="w-full max-w-md mb-2 mt-4 rounded-lg p-6"
-            style={{
-              backgroundColor: "rgba(0, 0, 0, 0.3)",
-              border: "2px solid #E09145",
-            }}
-          >
-            <form onSubmit={handleSubmit(onSubmit)}>
-              <TEInput
+        {/* Form */}
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+          {/* Email Input */}
+          <div className="space-y-2">
+            <div className="flex items-center border-b-2 border-gray-200 focus-within:border-[#5dade2] transition-colors pb-1 group">
+              <svg className="w-5 h-5 text-gray-400 mr-3 group-focus-within:text-[#5dade2] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+              </svg>
+              <input
                 type="email"
-                label="Email address"
-                size="lg"
-                className="mb-1 border border-purple-500 rounded-lg text-white"
-                style={{
-                  "--tw-ring-color": "#9F5F91",
-                  "--tw-ring-offset-width": "2px",
-                }}
                 {...register("email")}
-                isInvalid={errors.email}
-              ></TEInput>
-              <p className="mb-6 text-sm text-red-500">
-                {errors.email?.message}
-              </p>
+                placeholder="Email address"
+                className="w-full py-2 focus:outline-none placeholder-gray-400 text-sm bg-transparent"
+              />
+            </div>
+            {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email.message}</p>}
+          </div>
 
-              <TEInput
+          {/* Password Input */}
+          <div className="space-y-2">
+            <div className="flex items-center border-b-2 border-gray-200 focus-within:border-[#5dade2] transition-colors pb-1 group">
+              <svg className="w-5 h-5 text-gray-400 mr-3 group-focus-within:text-[#5dade2] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+              </svg>
+              <input
                 type="password"
-                label="Password"
-                className="mb-1 border border-purple-500 rounded-lg text-black"
-                style={{
-                  "--tw-ring-color": "#9F5F91",
-                  "--tw-ring-offset-width": "2px",
-                }}
-                size="lg"
                 {...register("password")}
-                isInvalid={errors.password}
-              ></TEInput>
-              <p className="mb-6 text-sm text-red-500">
-                {errors.password?.message}
-              </p>
+                placeholder="Password"
+                className="w-full py-2 focus:outline-none placeholder-gray-400 text-sm bg-transparent"
+              />
+            </div>
+            {errors.password && <p className="text-red-500 text-xs mt-1">{errors.password.message}</p>}
+          </div>
 
-              <TERipple rippleColor="light" className="w-full">
-                <button
-                  type="submit"
-                  className="mb-3 inline-block w-full rounded bg-yellow-500 px-7 pb-2.5 pt-3 text-sm font-medium uppercase leading-normal text-white shadow-md transition duration-150 ease-in-out hover:bg-yellow-600 hover:shadow-lg focus:bg-yellow-700 focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 active:bg-yellow-800 active:shadow-lg"
-                >
-                  {isSubmitting ? "Loading..." : "Sign In"}
-                </button>
-              </TERipple>
+          {/* Actions */}
+          <div className="flex items-center justify-between text-sm">
+            <label className="flex items-center space-x-2 cursor-pointer">
+              <input 
+                type="checkbox" 
+                className="form-checkbox h-4 w-4 text-[#5dade2] rounded focus:ring-[#5dade2] transition-colors"
+              />
+              <span className="text-gray-600 hover:text-gray-800 transition-colors">Remember me</span>
+            </label>
+            <a href="#" className="text-[#5dade2] hover:text-[#3a89ba] transition-colors">Forgot password?</a>
+          </div>
 
-              <TERipple rippleColor="light" className="w-full">
+          {/* Submit Button */}
+          <button
+            type="submit"
+            disabled={isSubmitting}
+            className="w-full py-3 text-white rounded-lg font-semibold text-sm transition-all duration-300 ease-in-out 
+              bg-gradient-to-r from-[#5dade2] to-[#4a9dce] hover:from-[#4a9dce] hover:to-[#3a89ba] 
+              shadow-md hover:shadow-lg transform hover:scale-[1.01] active:scale-95"
+          >
+            {isSubmitting ? (
+              <div className="flex items-center justify-center space-x-2">
+                <div className="w-4 h-4 border-2 border-white/30 rounded-full animate-spin border-t-transparent" />
+                <span>Signing In...</span>
+              </div>
+            ) : "Sign In"}
+
+            
+          </button>
+          <TERipple rippleColor="light" className="w-full">
                 <button
                   onClick={() => navigate("/register")}
                   type="button"
-                  className="mb-3 inline-block w-full rounded bg-yellow-500 px-7 pb-2.5 pt-3 text-sm font-medium uppercase leading-normal text-white shadow-md transition duration-150 ease-in-out hover:bg-yellow-600 hover:shadow-lg focus:bg-yellow-700 focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 active:bg-yellow-800 active:shadow-lg"
+                  className="mb-3  text-[#5dade2] hover:text-[#3a89ba] transition-colors"
                 >
-                  Sign Up
+                  Create Account
                 </button>
               </TERipple>
-
-              <div className="my-4 flex items-center before:flex-1 before:border-t before:border-neutral-300 after:flex-1 after:border-t after:border-neutral-300">
-                <p className="mx-4 mb-0 text-center font-semibold text-white">
-                  OR
-                </p>
+          {/* Social Login */}
+          <div>
+            <div className="relative my-4">
+              <div className="absolute inset-0 flex items-center">
+                <div className="w-full border-t border-gray-200"></div>
               </div>
-
-              <TERipple rippleColor="light" className="w-full">
-                <div
-                  onClick={handleGoogleLogin}
-                  className="mb-3 flex w-full cursor-pointer items-center justify-center rounded bg-[#13A455] px-7 pb-2.5 pt-3 text-center text-sm font-medium uppercase leading-normal text-white shadow-md transition duration-150 ease-in-out hover:bg-[#0e8a3f]"
-                >
-                  <svg
-                    className="mr-2 h-4 w-4"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      clipRule="evenodd"
-                      d="M12.037 21.998a10.313 10.313 0 0 1-7.168-3.049 9.888 9.888 0 0 1-2.868-7.118 9.947 9.947 0 0 1 3.064-6.949A10.37 10.37 0 0 1 12.212 2h.176a9.935 9.935 0 0 1 6.614 2.564L16.457 6.88a6.187 6.187 0 0 0-4.131-1.566 6.9 6.9 0 0 0-4.794 1.913 6.618 6.618 0 0 0-2.045 4.657 6.608 6.608 0 0 0 1.882 4.723 6.891 6.891 0 0 0 4.725 2.07h.143c1.41.072 2.8-.354 3.917-1.2a5.77 5.77 0 0 0 2.172-3.41l.043-.117H12.22v-3.41h9.678c.075.617.109 1.238.1 1.859-.099 5.741-4.017 9.6-9.746 9.6l-.215-.002Z"
-                    />
-                  </svg>
-                  Continue with Google
-                </div>
-              </TERipple>
-            </form>
+              <div className="relative flex justify-center">
+                <span className="px-2 bg-white text-gray-400 text-xs">Or continue with</span>
+              </div>
+            </div>
+            <button
+              onClick={handleGoogleLogin}
+              className="w-full flex items-center justify-center space-x-3 py-2.5 rounded-lg text-sm
+                bg-white hover:bg-gray-50 transition-colors duration-300
+                border-2 border-gray-200 hover:border-[#5dade2]/30
+                shadow-sm hover:shadow-md transform hover:scale-[1.005] active:scale-95"
+            >
+              <svg 
+                className="w-5 h-5" 
+                viewBox="0 0 24 24" 
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M23.7663 12.2764C23.7663 11.4607 23.6999 10.6406 23.5588 9.83807H12.2402V14.4591H18.7217C18.4528 15.9494 17.5885 17.2678 16.323 18.1056V21.1039H20.19C22.4608 19.0139 23.7663 15.9274 23.7663 12.2764Z"
+                  fill="#4285F4"
+                />
+                <path
+                  d="M12.2401 24.0008C15.4766 24.0008 18.2059 22.9382 20.1945 21.1039L16.3276 18.1055C15.2517 18.8375 13.8627 19.252 12.2445 19.252C9.11388 19.252 6.45946 17.1399 5.50705 14.3003H1.5166V17.3912C3.55371 21.4434 7.7029 24.0008 12.2401 24.0008Z"
+                  fill="#34A853"
+                />
+                <path
+                  d="M5.50277 14.3003C5.00011 12.8099 5.00011 11.1961 5.50277 9.70575V6.61481H1.51674C-0.185266 10.0056 -0.185266 14.0004 1.51674 17.3912L5.50277 14.3003Z"
+                  fill="#FBBC04"
+                />
+                <path
+                  d="M12.2401 4.74966C13.9509 4.7232 15.6044 5.36697 16.8434 6.54867L20.2695 3.12262C18.1001 1.0855 15.2208 -0.034466 12.2401 0.000808666C7.7029 0.000808666 3.55371 2.55822 1.5166 6.61481L5.50264 9.70575C6.45064 6.86173 9.10947 4.74966 12.2401 4.74966Z"
+                  fill="#EA4335"
+                />
+              </svg>
+              <span className="text-gray-700 font-medium">Continue with Google</span>
+            </button>
           </div>
-          
-        </div>
-        
-      </section>
-      
-      
+        </form>
+      </div>
     </div>
+  </div>
+</div>
   );
 }
