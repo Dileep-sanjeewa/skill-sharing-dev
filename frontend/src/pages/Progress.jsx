@@ -140,12 +140,22 @@ const Progress = () => {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                     </svg>
                   </div>
-                  <div>
-                    <p className="text-sm font-medium text-gray-500">Completion</p>
-                    <p className="font-semibold text-gray-800">
-                      {progress.completionPercentage}%
-                    </p>
-                  </div>
+                  <div className="w-full">
+  <div className="flex items-center justify-between mb-1">
+    <p className="text-sm font-medium text-gray-500">Completion</p>
+    <span className="text-sm font-semibold text-gray-800">
+      {progress.completionPercentage}%
+    </span>
+  </div>
+  <div className="h-3 bg-gray-200 rounded-full overflow-hidden">
+    <div 
+      className="h-full bg-gradient-to-r from-green-400 to-teal-500 rounded-full transition-all duration-500"
+      style={{ width: `${progress.completionPercentage}%` }}
+    >
+      <div className="w-full h-full bg-white/20 animate-pulse"></div>
+    </div>
+  </div>
+</div>
                 </div>
 
                 <div className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors duration-200">
