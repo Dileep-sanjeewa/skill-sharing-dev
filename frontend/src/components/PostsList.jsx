@@ -136,7 +136,7 @@ const PostsList = ({
   return (
     
       <div className="h-full w-full flex items-center justify-center min-h p-4 bg-cover bg-center"
-      style={{ backgroundImage: `url(${CreateBG})` }}
+      
       >
         <div className="border bg-gray-800 max-w-screen-md mt-6 rounded-2xl p-4 " style={{  border: "2px solid #E09145" }}>
           <div className="flex items-center	justify-between">

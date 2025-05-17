@@ -40,6 +40,9 @@ public class SkillExchangeServiceImpl implements SkillExchangeService {
             existing.setSkillRequested(updatedExchange.getSkillRequested());
             existing.setDescription(updatedExchange.getDescription());
             existing.setExchangeDate(updatedExchange.getExchangeDate());
+            existing.setPreferredMode(updatedExchange.getPreferredMode());
+            existing.setLocation(updatedExchange.getLocation());
+            existing.setContactInfo(updatedExchange.getContactInfo());
             return skillExchangeRepository.save(existing);
         }
         return null;

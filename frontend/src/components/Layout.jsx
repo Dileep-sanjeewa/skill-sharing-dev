@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "./Navbar";
+import Footer from "./Footer";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
@@ -31,9 +32,10 @@ const Layout = ({ children }) => {
   };
 
   return (
-    <div className="pt-[75px] min-h-screen bg-gray-100">
+    <div className="pt-[75px] min-h-screen bg-gray-100 flex flex-col">
       <Navbar user={user} />
-      <main>{children}</main>
+      <main className="flex-1">{children}</main>
+      <Footer />
     </div>
   );
 };

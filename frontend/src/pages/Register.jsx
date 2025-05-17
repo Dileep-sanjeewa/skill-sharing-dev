@@ -8,7 +8,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-hot-toast";
-import SignUpBG from "../images/CreateBG.png";
+
 
 const formSchema = yup.object().shape({
   firstName: yup.string().required("First name is required").min(2),
@@ -94,7 +94,7 @@ const Register = () => {
     <div 
       className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-cover bg-center bg-no-repeat"
       style={{
-        backgroundImage: `url(${SignUpBG})`,
+        backgroundColor: "#5dade2",
         backgroundAttachment: "fixed",
       }}
     >

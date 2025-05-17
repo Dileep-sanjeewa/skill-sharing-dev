@@ -1,15 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Layout from "../components/Layout";
-import { TETabs, TETabsItem } from "tw-elements-react";
 import PostsList from "../components/PostsList";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useActiveTab } from "../context/ActiveTabContext";
 import { SharedPostlist } from "../components/SharedPostlist";
-import { FaChartLine } from 'react-icons/fa';
-import { FaExchangeAlt } from 'react-icons/fa';
-import Progress from "./Progress";
-import SkillExchange from "./SkillExchange";
+
 
 
 const Home = () => {
@@ -84,48 +80,8 @@ const Home = () => {
 
   return (
     <Layout>
-      <>
-      {/* Tab navigation */}
-      <div className="mb-4">
-          <TETabs fill>
-            <TETabsItem
-              onClick={() => setActiveTab("tab1")}
-              active={activeTab === "tab1" || activeTab === ""}
-              className={`text-sm font-medium px-4 py-2 rounded-t-md transition-all duration-300 
-                ${activeTab === "tab1" || activeTab === ""
-                  ? "bg-gradient-to-r from-blue-500 to-blue-700 text-white shadow-md"
-                  : "bg-gray-200 text-gray-700 hover:bg-blue-100"}`}
-            >
-              Posts
-            </TETabsItem>
-            <TETabsItem
-              onClick={() => setActiveTab("tab5")}
-              active={activeTab === "tab5"}
-              icon={<FaChartLine />}
-              className={`text-sm font-medium px-4 py-2 rounded-t-md transition-all duration-300 
-                ${activeTab === "tab5"
-                  ? "bg-gradient-to-r from-blue-500 to-blue-700 text-white shadow-md"
-                  : "bg-gray-200 text-gray-700 hover:bg-blue-100"}`}
-            >
-              <FaChartLine /> Progress
-            </TETabsItem>
-
-            <TETabsItem
-              onClick={() => setActiveTab("tab6")}
-              active={activeTab === "tab6"}
-              icon={<FaExchangeAlt />}
-              className={`text-sm font-medium px-4 py-2 rounded-t-md transition-all duration-300 
-                ${activeTab === "tab6"
-                  ? "bg-gradient-to-r from-blue-500 to-blue-700 text-white shadow-md"
-                  : "bg-gray-200 text-gray-700 hover:bg-blue-100"}`}
-            >
-              <FaExchangeAlt /> Skill Exchange
-            </TETabsItem>
-          </TETabs>
-        </div>
-
-      {activeTab === "tab1" && (
-        <div>
+      <div style={{ backgroundColor: "#5dade2" }} className="min-h-screen py-6">
+        <div className="container mx-auto px-4">
           {posts?.map((post, index) => {
             return (
               <PostsList
@@ -146,25 +102,14 @@ const Home = () => {
               <SharedPostlist
                 post={sharePost}
                 user={user}
+                key={index}
                 reFetchSharedPost={reFetchSharedPost}
                 setReFetchSharedPost={setReFetchSharedPost}
               />
             );
           })}
         </div>
-      )}
-      
-      {activeTab === "tab5" && (
-        <div>
-          <Progress user={user} />
-        </div>
-      )}
-      {activeTab === "tab6" && (
-          <div>
-            <SkillExchange user={user} />
-          </div>
-        )}
-      </>
+      </div>
     </Layout>
   );
 };

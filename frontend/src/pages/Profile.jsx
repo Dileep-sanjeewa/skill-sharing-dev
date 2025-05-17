@@ -91,7 +91,7 @@ const Profile = () => {
     <Layout>
       <div
         className="w-full flex items-center justify-center flex-col"
-        style={{ backgroundImage: `url(${CreateBG})` }}
+        style={{  backgroundColor: "#5dade2" }}
       >
         <div className="pt-5">
           <SideBar2 logUser={user}/>

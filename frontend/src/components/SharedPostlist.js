@@ -140,9 +140,9 @@ export const SharedPostlist = ({
 
   return (
     <div>
-      <div className="">
-        <div className="h-full w-full bg-gray-50 flex items-center justify-center">
-          <div className="border max-w-screen-md bg-white mt-6 rounded-2xl p-4">
+      <div className="h-full w-full flex items-center justify-center min-h p-4 bg-cover bg-center">
+        <div className="h-full w-full flex items-center justify-center">
+          <div className="border bg-gray-800 max-w-screen-md mt-6 rounded-2xl p-4 " style={{  border: "2px solid #E09145" }}>
             <div className="flex items-center justify-between ">
               <div className="gap-3.5	flex items-center ">
                 <img
@@ -151,11 +151,11 @@ export const SharedPostlist = ({
                   className="object-cover bg-yellow-500 rounded-full w-10 h-10"
                 />
                 <div className="flex flex-col">
-                  <b className="mb-1 capitalize">{post?.sharedBy?.name}</b>
-                  <p className="text-sm">shared this post</p>
+                  <b className="mb-2 capitalize text-neutral-200">{post?.sharedBy?.name}</b>
+                  <p className="mt-1 text-sm text-neutral-200">shared this post</p>
                 </div>
               </div>
-              <div className="bg-gray-100	rounded-full h-3.5 flex	items-center justify-center gap-3">
+              <div className="bg-gray-800	rounded-full h-3.5 flex	items-center justify-center gap-3">
                 {user?.id === post?.sharedBy?.id && (
                   <>
                     <AiFillDelete
@@ -169,7 +169,7 @@ export const SharedPostlist = ({
               </div>
             </div>
             <div className="mb-2 border-b">
-              <p className="mt-1 text-sm text-gray-700 p-3">
+              <p className="mt-1 text-sm text-neutral-200">
                 {post.description}
               </p>
             </div>
@@ -181,18 +181,18 @@ export const SharedPostlist = ({
                   className="object-cover bg-yellow-500 rounded-full w-10 h-10"
                 />
                 <div className="flex flex-col">
-                  <b className="mb-2 capitalize">{post?.post?.username}</b>
-                  <time datetime="06-08-21" className="text-gray-400 text-xs">
+                  <b className="mb-2 capitalize text-neutral-200">{post?.post?.username}</b>
+                  <time datetime="06-08-21" className="text-neutral-200 text-xs">
                     <TimeAgo date={post?.post?.date} />
                   </time>
                 </div>
               </div>
               <div className="bg-gray-100	rounded-full h-3.5 flex	items-center justify-center gap-3"></div>
             </div>
-            <div className="whitespace-pre-wrap mt-7 font-bold ">
+            <div className="whitespace-pre-wrap mt-7 font-bold text-neutral-200">
               {post?.post?.title}
             </div>
-            <p className="mt-1 text-sm text-gray-700">
+            <p className="mt-1 text-sm text-neutral-200">
               {post?.post?.description}
             </p>
             <div className="mt-5 flex gap-2	 justify-center border-b pb-4 flex-wrap	w-[600px] max-w-[700px]">
